@@ -1,17 +1,43 @@
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+//Exercicio 03
+//Crie um programa que leia 3 números, imprima o maior, o menor e a média aritmética.
+
+//Nota: Não consegui tirar os Optionals dos prints.
+
+import java.util.Arrays;
+import java.util.OptionalDouble;
+import java.util.OptionalInt;
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        // Press Opt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
 
-        // Press Ctrl+R or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+        Scanner Scan = new Scanner(System.in);
 
-            // Press Ctrl+D to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Cmd+F8.
-            System.out.println("i = " + i);
-        }
+        int[] numberArray = {};
+
+
+        System.out.print("Digite o primeiro número: ");
+        int firstNumber = Integer.parseInt(Scan.nextLine());
+
+        System.out.print("Digite o segundo número: ");
+        int secondNumber = Integer.parseInt(Scan.nextLine());
+
+        System.out.print("Digite o segundo número: ");
+        int thirdNumber = Integer.parseInt(Scan.nextLine());
+
+        numberArray = new int[]{firstNumber, secondNumber, thirdNumber};
+
+        OptionalDouble numbersAvarage = Arrays.stream(numberArray).average();
+        String numbersAvarageString = numbersAvarage.toString();
+
+        OptionalInt numbersMax = Arrays.stream(numberArray).max();
+        String numbersMaxString = numbersMax.toString();
+
+        OptionalInt numbersMin = Arrays.stream(numberArray).min();
+        String numbersMinString = numbersMin.toString();
+
+        System.out.println("Média dos números: " + numbersAvarageString);
+        System.out.println("Maior número: " + numbersMaxString);
+        System.out.println("Menor número: " + numbersMinString);
     }
 }

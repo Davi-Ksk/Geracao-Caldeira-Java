@@ -1,5 +1,8 @@
+import javax.management.StringValueExp;
 import java.sql.SQLOutput;
 import java.time.LocalDateTime;
+import java.time.Month;
+import java.util.ArrayList;
 
 public class ContaBancaria {
     private String nome;
@@ -11,7 +14,13 @@ public class ContaBancaria {
     private LocalDateTime horarioAtual = LocalDateTime.now();
 
 
-    public ContaBancaria(String nome, int cpf, int identificadorConta, String banco, String endereco, double saldo, LocalDateTime horarioAtual) {
+    public ContaBancaria(String nome,
+                         int cpf,
+                         int identificadorConta,
+                         String banco,
+                         String endereco,
+                         double saldo,
+                         LocalDateTime horarioAtual) {
         this.nome = nome;
         this.cpf = cpf;
         this.identificadorConta = identificadorConta;
@@ -38,11 +47,31 @@ public class ContaBancaria {
 
     public void verificarSaldo(){
         System.out.println("Saldo atual: " + this.saldo);
-
     }
 
     public void verificarHorario(){
         System.out.println("Horario atual: " + this.horarioAtual);
+    }
+
+    public int validarHorario(){
+        //int hora = 4;
+        return this.horarioAtual.getHour();
+    }
+
+    public void transferir(ContaBancaria destino, double valor){
+        if (this.validarHorario() >= 8 && this.validarHorario() <= 19){
+            this.sacar(valor);
+            destino.depositar(valor);
+            System.out.println("Transferência realizada");
+        } else {
+            System.out.println("Horario inválido");
+        }
+    }
+
+    public void pix(ContaBancaria destino, double valor){
+        this.sacar(valor);
+        destino.depositar(valor);
+        System.out.println("Pix realizado");
     }
 
     public void verificarInformacoes(){
@@ -54,7 +83,36 @@ public class ContaBancaria {
         System.out.println("Saldo: " + this.saldo);
     }
 
+    public void alterarEndereço(String endereco){
+        this.endereco = endereco;
+        System.out.println("Endereço alterado, novo endereço: " + this.endereco);
+    }
 
+    public void historicoDeConta(
+            ContaBancaria horarioAtual,
+            String tipoOperacao,
+            ContaBancaria origem,
+            ContaBancaria destino,
+            ContaBancaria nome){
+
+        ArrayList<String> historico = new ArrayList();
+
+        String transacao =
+                String.valueOf(horarioAtual)
+                .concat(", ")
+                .concat(tipoOperacao)
+                .concat(", ")
+                .concat(String.valueOf(origem))
+                .concat(", ")
+                .concat(String.valueOf(destino))
+                .concat(", ")
+                .concat(String.valueOf(nome))
+                .concat(", ")
+                .concat(String.valueOf(nome))
+                ;
+
+        historico.add(transacao);
+    }
 
 
 

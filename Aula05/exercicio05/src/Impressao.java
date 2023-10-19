@@ -1,17 +1,25 @@
 public class Impressao {
-    private String nome;
+    private String nomeDaImpressao;
     private int numeroDePaginas;
 
-    public Impressao(String nome, int numeroDePaginas) {
-        this.nome = nome;
+    public Impressao(String nomeDaImpressao, int numeroDePaginas) {
+        this.nomeDaImpressao = nomeDaImpressao;
         this.numeroDePaginas = numeroDePaginas;
     }
 
     public String getNome() {
-        return nome;
+        return nomeDaImpressao;
     }
 
     public int getNumeroDePaginas() {
         return numeroDePaginas;
+    }
+
+    public void setNomeDaImpressao(String nomeDaImpressao) {
+        this.nomeDaImpressao = nomeDaImpressao;
+    }
+
+    public void setNumeroDePaginas(int numeroDePaginas) {
+        this.numeroDePaginas = numeroDePaginas;
     }
 }

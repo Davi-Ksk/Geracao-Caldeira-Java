@@ -5,14 +5,14 @@ public class Menu {
     public static void menu(){
 
         Scanner scanner = new Scanner(System.in);
-
+        Impressao impressao = new Impressao();
         boolean sair = false;
 
         do {
             System.out.println("----------------------Menu-----------------------");
             System.out.println("1 - Adicionar documentos na fila de impressão");
-            System.out.println("2 - Imprimir documentos na fila de impressão");
-            System.out.println("3 - Retirar documentos na fila de impressão");
+            System.out.println("2 - Retirar documentos na fila de impressão");
+            System.out.println("3 - Imprimir documentos na fila de impressão");
             System.out.println("4 - Sair");
 
             System.out.print("Escolha uma opção: ");
@@ -20,17 +20,22 @@ public class Menu {
 
             switch (opcao) {
                 case 1 -> {
+                    impressao.adicionar();
                 }
-                // Adicionar documentos na fila de impressão
+
                 case 2 -> {
+                    impressao.retirar();
                 }
-                // Imprimir documentos na fila de impressão
+
                 case 3 -> {
+                    impressao.imprimirLista();
                 }
-                // Retirar documentos na fila de impressão
-                case 4 ->
-                    // Sair
-                        sair = true;
+
+                case 4 -> {
+                    System.out.println("Saindo...");
+                    sair = true;
+                }
+
                 default -> System.out.println("Opção inválida!");
             }
 
